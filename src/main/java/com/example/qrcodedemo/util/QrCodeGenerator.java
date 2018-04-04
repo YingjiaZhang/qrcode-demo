@@ -17,7 +17,7 @@ public class QrCodeGenerator {
 
     private static ErrorCorrectionLevel level = ErrorCorrectionLevel.L;  //二维码容错率
 
-    public static byte[] getQRCodeImage(QrCodeRequest qrCodeRequest) throws WriterException, IOException {
+    public static byte[] getQRCodeImage(String uri, QrCodeRequest qrCodeRequest) throws WriterException, IOException {
         MyQRCodeWriter qrCodeWriter = new MyQRCodeWriter();
         Hashtable<EncodeHintType, Object> hints = new Hashtable<EncodeHintType, Object>();
         // 指定纠错等级
@@ -26,9 +26,9 @@ public class QrCodeGenerator {
         hints.put(EncodeHintType.CHARACTER_SET, qrCodeRequest.getCharacterSet());
         hints.put(EncodeHintType.MARGIN, qrCodeRequest.getMarginLength());   //设置白边
         int sideLength = qrCodeRequest.getSideLength();
-        BitMatrix bitMatrix = qrCodeWriter.encode(qrCodeRequest.getUri(), BarcodeFormat.QR_CODE, sideLength, sideLength, hints);
+        BitMatrix bitMatrix = qrCodeWriter.encode(uri, BarcodeFormat.QR_CODE, sideLength, sideLength, hints);
         ByteArrayOutputStream pngOutputStream = new ByteArrayOutputStream();
-        MatrixToImageConfig config = new MatrixToImageConfig(qrCodeRequest.getFrontColorValue(), qrCodeRequest.getBackColorValue());
+        MatrixToImageConfig config = new MatrixToImageConfig(qrCodeRequest.getColorValue(qrCodeRequest.getFrontColor()), qrCodeRequest.getColorValue(qrCodeRequest.getBackColor()));
         MatrixToImageWriter.writeToStream(bitMatrix, "PNG", pngOutputStream, config);
         return pngOutputStream.toByteArray();
     }
