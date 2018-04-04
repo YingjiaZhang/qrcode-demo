@@ -1,4 +1,4 @@
-package com.example.qrcodedemo.controller;
+package com.example.qrcodedemo.api;
 
 import com.example.qrcodedemo.dto.QrCodeRequest;
 import com.example.qrcodedemo.util.QrCodeGenerator;
@@ -10,8 +10,8 @@ import javax.validation.Valid;
 import java.io.IOException;
 
 @RestController
-@RequestMapping("/qr")
-public class QrCodeController {
+@RequestMapping("/qrcode")
+public class QrCodeApi {
 
     @GetMapping(produces = "image/png")
     @ResponseStatus(HttpStatus.OK)

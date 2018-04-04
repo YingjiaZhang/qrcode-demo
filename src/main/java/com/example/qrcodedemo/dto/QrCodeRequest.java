@@ -7,9 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Size;
 import java.awt.*;
-import java.beans.Transient;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
 @Data
