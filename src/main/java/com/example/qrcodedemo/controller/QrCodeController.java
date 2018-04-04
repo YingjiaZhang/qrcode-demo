@@ -13,7 +13,7 @@ import java.io.IOException;
 @RequestMapping("/qr")
 public class QrCodeController {
 
-    @GetMapping(value = "/test", produces = "image/png")
+    @GetMapping(produces = "image/png")
     @ResponseStatus(HttpStatus.OK)
     public byte[] generateQrCode(@Valid @ModelAttribute QrCodeRequest qrCodeRequest) throws IOException, WriterException {
         return QrCodeGenerator.getQRCodeImage(qrCodeRequest);
